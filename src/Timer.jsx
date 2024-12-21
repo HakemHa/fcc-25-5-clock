@@ -9,24 +9,32 @@ function Timer() {
   const on = useSelector((state) => state.do.on);
   useEffect(() => {
     if (on) {
-      console.log("Run");
       const interval = setInterval(() => dispatch(second()), 1000);
       return () => clearInterval(interval);
     }
     return
   }, [time_left, on]);
+
+  let formatted_time_left = time_left.toString().replace(".", ":");
+  if (formatted_time_left.length <= 2) {
+    if (formatted_time_left.length == 1) formatted_time_left = "0" + formatted_time_left;
+    formatted_time_left += ":00"
+  }
+  else if (formatted_time_left.length == 4) {
+    formatted_time_left = "0" + formatted_time_left;
+  }
   
   return (
-    <>
     <div className="timer">
+    <div className="timer_time">
       <p className="sub-title">{state_mode}</p>
-      <p className="time">{time_left}</p>
+      <p className="time">{formatted_time_left}</p>
     </div>
     <div className="start_buttons">
       <button onClick={() => dispatch(start_pause())}>&#x23EF;</button>
       <button onClick={() => dispatch(reset())}>&#128472;</button>
     </div>
-  </>
+  </div>
   )
 }
   

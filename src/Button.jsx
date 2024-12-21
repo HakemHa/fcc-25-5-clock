@@ -7,14 +7,14 @@ function Button(props) {
   const on = useSelector((state) => state.do.on);
 
     return (
-      <>
+      <div className="button">
         <div className="sub-title">{props.name}</div>
         <div className="setters">
-            <button onClick={() => !on && dispatch(decrease(props.sets))}>&darr;</button>
+            <button onClick={() => !on && dispatch(decrease(props.sets))}>🠋</button>
             <p className="sub-title">{quantity}</p>
-            <button onClick={() => !on && dispatch(increase(props.sets))}>&uarr;</button>
+            <button onClick={() => !on && dispatch(increase(props.sets))}>🠉</button>
         </div>
-      </>
+      </div>
     )
   }
   
